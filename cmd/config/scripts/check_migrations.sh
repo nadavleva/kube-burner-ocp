@@ -54,7 +54,8 @@ verify)
                 .status.migrationState.targetNode != $old.node and
                 .status.nodeName == .status.migrationState.targetNode))
     ' <<< "$vmis" >/dev/null; then
-        echo "Migration incomplete: expected $expected distinct VMs to move successfully" >&2
+        actual=$(jq '[.items[] | select(.status.migrationState.completed == true)] | length' <<< "$vmis")
+        echo "virt-parallel migration verify: expected=$expected actual=$actual (successful migrations for selector $selector)" >&2
         exit 1
     fi
     echo "Migration expected=$expected completed=$expected"

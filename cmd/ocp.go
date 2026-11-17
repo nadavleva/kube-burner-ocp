@@ -89,7 +89,9 @@ func openShiftCmd() *cobra.Command {
 			os.Exit(0)
 		}
 		if enableFileLogging {
-			util.SetupFileLogging("ocp-" + workloadConfig.UUID)
+			logPrefix := "ocp-" + workloadConfig.UUID
+			util.SetupFileLogging(logPrefix)
+			log.Infof("kube-burner-ocp: file logging enabled at kube-burner-%s.log (--log-level=info default; use --log-level=debug for hook detail)", logPrefix)
 		}
 		if cmd.Name() == "cluster-health" {
 			return

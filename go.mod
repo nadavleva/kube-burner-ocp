@@ -175,6 +175,7 @@ require (
 )
 
 replace (
+	github.com/kube-burner/kube-burner/v2 => github.com/nadavleva/kube-burner/v2 v2.0.0-20261117104823-267b98ff0b84
 	k8s.io/api => k8s.io/api v0.34.3
 	k8s.io/apimachinery => k8s.io/apimachinery v0.34.3
 	k8s.io/client-go => k8s.io/client-go v0.34.3
