@@ -226,7 +226,8 @@ func RunWorkload(cmd *cobra.Command, wh *workloads.WorkloadHelper, configFile st
 	defaultUndefinedTemplateVars(configFile)
 	addWorkloadFlagsToMetadata(cmd, wh)
 	wh.SetVariables(AdditionalVars, SetVars)
-	return wh.Run(configFile)
+	rc := wh.Run(configFile)
+	return finalizeWorkloadExit(wh.UUID, rc)
 }
 
 var (
